@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.spm.entity.impl.ProductBlock.Library.LibraryType;
+
 plugins {
     kotlin("multiplatform") version "1.4.255-SNAPSHOT"
     kotlin("native.spm") version "1.4.255-SNAPSHOT"
@@ -44,8 +46,15 @@ kotlin {
                 +"myPackage3"
             }
 
-            library("libraryName") {
-                +"myLib"
+            library("staticLibraryName", LibraryType.STATIC) {
+                +"myLib1"
+                +"myLib2"
+            }
+
+            library("dynamicLibraryName", LibraryType.DYNAMIC) {
+                +"myLib1"
+                +"myLib2"
+                +"myLib3"
             }
         }
 
@@ -59,6 +68,7 @@ kotlin {
                     target("dependencyTargetName")
                     target(name = "dependencyTargetName")
                     target(name = "dependencyTargetName", condition = "TODO")
+                    target("asd")
 
                     product("package", "package-kit")
                     product(name = "package", `package` = "package-kit")
